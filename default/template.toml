@@ -1,0 +1,7 @@
+[template]
+spec="1.0.0"
+main_file = "template.html"
+assets = ["flayout.css","highlight.pack.js","a11y-light.css"]
+
+[search]
+search_file = "template_search.html"

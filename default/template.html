@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="_assets/a11y-light.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="_assets/flayout.css">
+    <script src="_assets/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+            /*.f-v{display:flex;flex-direction:column}.f-h{display:flex;flex-direction:row}.f-h-reverse{display:flex;flex-direction:row-reverse}.f-v-reverse{display:flex;flex-direction:column-reverse}.f-wrap{flex-wrap:wrap}.f-grow{flex-grow:1}.f-span-2{flex-grow:2}.f-span-3{flex-grow:3}.f-span-4{flex-grow:4}@media (max-width: 768px){.f-m-h{display:flex;flex-direction:column}}@media (max-width: 768px){.f-m-v{display:flex;flex-direction:row}}@media (max-width: 768px){.f-m-v-reverse{display:flex;flex-direction:row-reverse}}@media (max-width: 768px){.f-m-h-reverse{display:flex;flex-direction:column-reverse}}@media (max-width: 768px){.f-m-grow{flex-grow:1}}@media (max-width: 768px){.f-m-no-grow{flex-grow:0}}
+*/
+
+            body {
+                margin:0px;
+                padding:0px;
+            }
+            .header {
+                background-color:green;
+                width:100%;
+                margin:0px;
+                padding:0px;
+                content:"";
+                font-size:50px;
+                text-align:center;
+                
+            }
+            .sidebar {
+                background-color: dimgrey;
+                width:20vw;
+                overflow: scroll;
+                
+            }
+            .area {
+                height:100%;
+            }
+            .body {
+                height:100%;
+                margin-left: 10px;
+                overflow-y: scroll;
+                overflow-x: scroll;
+                font-family: sans-serif;
+            }
+            .main {
+                height:100vh;
+            }
+
+            .sidebar-item {
+                background-color: dimgrey;
+                border: 2px black solid;
+                padding: 3px;
+            }
+
+            .sidebar-button {
+                background-color: dimgrey;
+
+            }
+
+            .true {
+                display: block;
+            }
+
+            .false {
+                display: none;
+            }
+
+            .searchbar {
+                width:98%;
+                border: 3px solid black;
+                background-color: white;
+                color: black;
+                padding:5px;
+                margin: 5px;
+                font-size: 15px;
+            }
+
+            h1 {
+                border-bottom: 1px solid #777;
+                width: 100%;
+                display: block;
+            }
+
+            h2 {
+                border-bottom: 1px dotted #777;
+                width: 100%;
+                display: block;
+            }
+    </style>
+</head>
+<body class="main">
+        <script>
+                function toggleSidebarItem(content) {
+                    console.log("Toggling side bar...");
+                    var cl = content.classList.item(0)
+                    if (cl == "true") {
+                        content.classList.replace("true","false");
+                    }
+                    else {
+                        content.classList.replace("false","true");
+                    }
+                    
+                }
+        
+                function setSidebarItem(toggle, content) {
+                    console.log("Setting side bar...");
+                    if (toggle) {
+                        content.style.display == "block";
+                    }
+                    else {
+                        content.style.display == "none";
+                    }
+                }
+            </script>
+    
+    <div class="header f-grow" style="margin:0px;">{{title}}</div>
+    <div class="f-h area">
+        <sidebar-folder>
+            <div class="sidebar-item f-v">
+                <div class="f-h">
+                    <button class="sidebar-button" onclick="toggleSidebarItem(document.getElementById('{{name}}-content'));">&gt;</button>
+                    <span>{{name}}</span>
+                </div>
+                <div id="{{name}}-content" class="{{active}}">
+                    {{tree}}
+                </div>
+            </div>
+        </sidebar-folder>
+
+        <sidebar-module>
+            <div class="f-v sidebar-item ">
+                <div class="f-h">
+                    <button class="sidebar-button" onclick="toggleSidebarItem(document.getElementById('{{name}}-content'));">&gt;</button>
+                    <a href="{{link}}">{{name}}</a>
+                </div>
+                <div id="{{name}}-content" class="{{active}}">
+                    {{tree}}
+                </div>
+            </div>
+        </sidebar-module>
+
+        <sidebar-class>
+            <div class="f-v sidebar-item ">
+                <div class="f-h">
+                    <button class="sidebar-button" onclick="toggleSidebarItem(document.getElementById('{{name}}-content'));">&gt;</button>
+                    <a href="{{link}}">{{name}}</a>
+                </div>
+                <div id="{{name}}-content" class="{{active}}">
+                    {{tree}}
+                </div>
+            </div>
+        </sidebar-class>
+
+        <sidebar-page>
+            <div class="f-v sidebar-item ">
+                <div class="f-h">
+                    <button class="sidebar-button" onclick="toggleSidebarItem(document.getElementById('{{name}}-content'));">&gt;</button>
+                    <a href="{{link}}">{{name}}</a>
+                </div>
+                <div id="{{name}}-content" class="{{active}}">
+                    {{tree}}
+                </div>
+            </div>
+        </sidebar-page>
+
+        <sidebar-function>
+            <div class="f-v sidebar-item ">
+                <div class="f-h">
+                    <a href="{{link}}">{{name}}</a>
+                </div>
+                <div id="{{name}}-content" class="{{active}}">
+                    {{tree}}
+                </div>
+            </div>
+        </sidebar-function>
+        
+        <div class="sidebar f-v">
+            <form action="{{searchpath}}">
+                <input type="text" name="search" class="searchbar" title="Search!" placeholder="Search!">
+            </form>
+            {{sidebar}}
+        </div>
+        <div class="body f-grow">
+
+                {{content}}
+        </div>
+
+    </div>
+
+   
+</body>
+</html>
