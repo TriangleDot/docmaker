@@ -22,6 +22,21 @@ Installation
 Soon, there will be downloadable executables from <https://triangledot.org>
 For now, check out the Building Guide
 
+Command Line Usage
+------------------
+Docmaker can run and export from the command line
+This can be used for automated builds
+
+Open a directory:
+```sh
+$ path/to/docmaker path/to/directory
+```
+
+Export with the default template
+```sh
+$ path/to/docmaker path/to/directory -e path/to/export -t default -i "Title of my doc"
+```
+
 Building Guide
 ---------------
 ### Linux:

@@ -95,7 +95,7 @@ namespace docmaker
             Application.Quit();
         }
 
-        private void openDir(String dir) {
+        public void openDir(String dir) {
             tree.flush();
             files = new FileSystem.FileSystem(dir,tree,editor);
             tree.getIndexAtPath("root").path = dir;
